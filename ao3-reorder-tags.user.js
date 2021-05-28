@@ -24,8 +24,8 @@
 
 (function() {
     'use strict';
-
-    $("ul.autocomplete").sortable({
+    const $reorderSelector = $(".fandom,.relationship,.character,.freeform").find("ul.autocomplete");
+    $reorderSelector.sortable({
         items: "li:not(.input)",
         revert: 100, // revert animation duration in ms
         change: function(i) { // https://stackoverflow.com/questions/31591348/jquery-ui-sortable-with-fixed-elements-on-the-end
@@ -40,7 +40,7 @@
     });
 
     const overrideHiddenInputs = function() {
-        $("ul.autocomplete").each(function(i, a) {
+        $reorderSelector.each(function(i, a) {
             const $a = $(a);
             const $hiddenInput = $a.siblings("input:hidden").first();
             const tagList = [];
