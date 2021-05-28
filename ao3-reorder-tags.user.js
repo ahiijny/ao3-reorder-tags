@@ -8,7 +8,9 @@
 // @match        http*://archiveofourown.org/works/*/edit
 // @match        http*://archiveofourown.org/works/*/edit_tags
 // @match        http*://localhost:3000/*
-// @grant        GM_xmlhttpRequest
+// @grant        none
+// @downloadURL  https://github.com/ahiijny/ao3-reorder-tags/raw/main/ao3-reorder-tags.user.js
+// @updateURL    https://github.com/ahiijny/ao3-reorder-tags/raw/main/ao3-reorder-tags.user.js
 // @require      https://code.jquery.com/jquery-1.12.4.js
 // @require      https://code.jquery.com/ui/1.12.1/jquery-ui.js
 // ==/UserScript==
