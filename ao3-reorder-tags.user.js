@@ -4,7 +4,9 @@
 // @version      0.01
 // @description  Reorder tags on your AO3 works by clicking and dragging
 // @author       ahiijny
-// @match        http*://archiveofourown.org/*
+// @match        http*://archiveofourown.org/works/new
+// @match        http*://archiveofourown.org/works/*/edit
+// @match        http*://archiveofourown.org/works/*/edit_tags
 // @match        http*://localhost:3000/*
 // @grant        GM_xmlhttpRequest
 // @require      https://code.jquery.com/jquery-1.12.4.js
@@ -36,6 +38,12 @@
     });
 
     $("form").submit(function(e) {
+        // https://stackoverflow.com/questions/2298635/can-i-determine-which-submit-button-was-used-in-javascript
+        const button = e.explicitOriginalTarget || e.relatedTarget || document.activeElement || {};
+        console.log("[ao3-reorder-tags] button pressed: " + button.name);
+        if (button.name === 'cancel_button') {
+            return;
+        }
         overrideHiddenInputs();
     });
 
@@ -50,7 +58,7 @@
             });
             const tagListStr = tagList.join(", ");
             $hiddenInput.val(tagListStr);
-            console.log("[ao3-reorder-tags] Overwriting " + $hiddenInput.attr("name") + " with: [ " + tagListStr + " ]");
+            console.log("[ao3-reorder-tags] Submitting " + $hiddenInput.attr("name") + " as: [ " + tagListStr + " ]");
         });
     }
  })();
